@@ -29,8 +29,65 @@ maxValue := maxFunc(2, 3, 3, 4, 1, 2, 4, 5)
 
 */
 
-import "fmt"
+import "errors"
 
 func main() {
 
+}
+
+func minimum(values ...int) (float64, error) {
+  result := values[0]
+
+  for _, v := range values {
+    if v < 0 {
+      return 0, errors.New("Valor negativo")
+    }
+    if v < result {
+      result = v
+    }
+  }
+
+  return float64(result), nil
+}
+
+func maximum(values ...int) (float64, error) {
+  result := values[0]
+
+  for _, v := range values {
+    if v < 0 {
+      return 0, errors.New("Valor negativo")
+    }
+    if v > result {
+      result = v 
+    }
+  }
+
+  return float64(result), nil
+}
+
+func average(values ...int) (float64, error) {
+  result := 0
+
+  for _, v := range values {
+    if v < 0 {
+      return 0, errors.New("Valor negativo")
+    }
+    result += v
+  }
+
+  return float64(result) / float64(len(values)), nil
+}
+
+    
+func operation(op string) (func(values ...int) (float64, error), error) {
+  switch op {
+  case "minimum":
+    return minimum, nil
+  case "maximum":
+    return maximum, nil
+  case "average":
+    return average, nil
+  default:
+    return nil, errors.New("Invalid argument")
+  }
 }
