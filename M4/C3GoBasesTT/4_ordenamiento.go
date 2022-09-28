@@ -1,4 +1,5 @@
 package main
+
 /*
 
 Opcional - Ejercicio 4 - Ordenamiento
@@ -10,12 +11,12 @@ un arreglo de números enteros con 10000 valores
 
 Para instanciar las variables utilizar rand
 package main
- 
+
 import (
    "math/rand"
 )
- 
- 
+
+
 func main() {
    variable1 := rand.Perm(100)
    variable2 := rand.Perm(1000)
@@ -33,9 +34,113 @@ Por último debo medir el tiempo de cada uno y mostrar en pantalla el resultado,
 */
 
 import (
-
+	"fmt"
+	"math/rand"
+	"time"
 )
 
-func main() {
+func insertSort(a []int, c chan []int) {
+    // I make a copy so all the funcs can work on the original
+    // slice without modifying it.
+    start := time.Now()
+    arr := make([]int, len(a))
+    copy(arr, a)
+    i := 1
+    for i < len(arr) {
+        j := i
+        for j > 0 && arr[j - 1] > arr[j] {
+            temp := arr[j]
+            arr[j] = arr[j - 1]
+            arr[j - 1] = temp
+            j--
+        }
+        i++
+    }
+    end := time.Now()
+    fmt.Printf("\tInsert sort took %v\n", end.Sub(start))
+    c <- arr
+}
 
+func bubbleSort(a []int, c chan []int) {
+    // I make a copy so all the funcs can work on the original
+    // slice without modifying it.
+    start := time.Now()
+    arr := make([]int, len(a))
+    copy(arr, a)
+    n := len(arr)
+    for {
+        swapped := false
+        for i := 1; i < n; i++ {
+            if arr[i - 1] > arr[i] {
+                temp := arr[i]
+                arr[i] = arr[i - 1]
+                arr[i - 1] = temp
+                swapped = true
+            }
+        }
+        if !swapped {
+            break
+        }
+    }
+    end := time.Now()
+    fmt.Printf("\tBubble sort took %v\n", end.Sub(start))
+    c <- arr
+}
+
+func selectSort(a []int, c chan []int) {
+    // I make a copy so all the funcs can work on the original
+    // slice without modifying it.
+    start := time.Now()
+    arr := make([]int, len(a))
+    copy(arr, a)
+    for i := 0; i < len(arr); i++ {
+        min := i
+        for j := i + 1; j < len(arr); j++ {
+            if arr[j] < arr[min] {
+                min = j
+            }
+        }
+        if min != i {
+            temp := arr[i]
+            arr[i] = arr[min]
+            arr[min] = temp
+        }
+    }
+    end := time.Now()
+    fmt.Printf("\tSelect sort took %v\n", end.Sub(start))
+    c <- arr
+}
+
+func printHeader(n int) {
+    fmt.Println("Array length is ", n)
+}
+
+func main() {
+    arr := rand.Perm(100)
+    c := make(chan []int)
+    printHeader(len(arr))    
+    go insertSort(arr, c)
+    <- c
+    go bubbleSort(arr, c)
+    <- c
+    go selectSort(arr, c)
+    <- c
+
+    arr = rand.Perm(1000)
+    printHeader(len(arr))    
+    go insertSort(arr, c)
+    <- c
+    go bubbleSort(arr, c)
+    <- c
+    go selectSort(arr, c)
+    <- c
+
+    arr = rand.Perm(10000)
+    printHeader(len(arr))    
+    go insertSort(arr, c)
+    <- c
+    go bubbleSort(arr, c)
+    <- c
+    go selectSort(arr, c)
+    <- c
 }
