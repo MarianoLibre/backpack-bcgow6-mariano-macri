@@ -18,21 +18,22 @@ func (e *myError) Error() string {
     return e.msg
 }
 
-func checkSalary(salary int) (int, error) {
+func checkSalary(salary int) (string, error) {
+    msg := "Debe pagar impuesto"
     if salary < 150000 {
-        return salary, &myError {
+        return "", &myError {
             "error: el salario ingresado no alcanza el mínimo imponible",
         }
     }
-    return salary, nil
+    return msg, nil
 }
 
 func main() {
     salary := 200000
-    _, err := checkSalary(salary)
+    msg, err := checkSalary(salary)
     if err != nil {
         fmt.Println(err)
         return
     }
-    fmt.Println("Debe pagar impuesto")
+    fmt.Println(msg)
 }
