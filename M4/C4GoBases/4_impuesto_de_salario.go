@@ -62,7 +62,7 @@ func main() {
             fmt.Println(err)
         } else {
             employee.Salaries = append(employee.Salaries, salary)
-            fmt.Printf("Sarario del mes: %.2f\n", salary)
+            fmt.Printf("Salario del mes: %.2f\n", salary)
         }
     }
 
