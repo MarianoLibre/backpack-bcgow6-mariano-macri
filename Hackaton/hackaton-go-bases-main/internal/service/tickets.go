@@ -48,6 +48,10 @@ func (b *bookings) Read(id int) (Ticket, error) {
 }
 
 func (b *bookings) Update(id int, t Ticket) (Ticket, error) {
+    if t.Id != id {
+        return Ticket{}, errors.New("error: Id missmatch...")
+    }
+
     for index, value := range b.Tickets {
         if value.Id == id {
             b.Tickets[index] = t
