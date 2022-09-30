@@ -1,5 +1,7 @@
 package service
 
+import "errors"
+
 type Bookings interface {
 	// Create create a new Ticket
 	Create(t Ticket) (Ticket, error)
@@ -27,17 +29,40 @@ func NewBookings(Tickets []Ticket) Bookings {
 }
 
 func (b *bookings) Create(t Ticket) (Ticket, error) {
-	return Ticket{}, nil
+    for _, value := range b.Tickets {
+        if value.Id == t.Id {
+            return Ticket{}, errors.New("error: same Id is already in use")
+        }
+    }
+    b.Tickets = append(b.Tickets, t)
+	return t, nil
 }
 
 func (b *bookings) Read(id int) (Ticket, error) {
-	return Ticket{}, nil
+    for _, value := range b.Tickets {
+        if value.Id == id {
+            return value, nil
+        }
+    }
+    return Ticket{}, errors.New("error: Id not found")
 }
 
 func (b *bookings) Update(id int, t Ticket) (Ticket, error) {
-	return Ticket{}, nil
+    for index, value := range b.Tickets {
+        if value.Id == id {
+            b.Tickets[index] = t
+            return t, nil
+        }
+    }
+    return Ticket{}, errors.New("error: Id not found")
 }
 
 func (b *bookings) Delete(id int) (int, error) {
-	return 0, nil
+    for index, value := range b.Tickets {
+        if value.Id == id {
+            b.Tickets = append(b.Tickets[:index], b.Tickets[index + 1:]... )
+            return id, nil
+        }
+    }
+    return 0, errors.New("error: Id not found")
 }
