@@ -17,9 +17,9 @@ func main() {
         }
     }()
 
-	var tickets []service.Ticket
+    var tickets []service.Ticket
 
-	// Funcion para obtener tickets del archivo csv
+    // Funcion para obtener tickets del archivo csv
     f := file.File{Path: "/Users/MMACRI/Bootcamp/backpack-bcgow6-mariano-macri/Hackaton/hackaton-go-bases-main/tickets.csv"} 
 
     data, err := f.Read()
