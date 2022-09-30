@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+    "fmt"
 
-	"github.com/bootcamp-go/hackaton-go-bases/internal/service"
+    "github.com/bootcamp-go/hackaton-go-bases/internal/service"
     "github.com/bootcamp-go/hackaton-go-bases/internal/file"
 )
 
