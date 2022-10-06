@@ -53,15 +53,6 @@ func main() {
     fmt.Println("Your new ticket has been added!")
     fmt.Println("........")
 
-    /*
-    err = f.Write(&newTicket)
-    if err != nil {
-        fmt.Println(err)
-    }
-    fmt.Println("Changes have been saved!")
-    fmt.Println("........")
-    */
-    
     ticket, err := bookings.Read(1000)
     if err != nil {
         panic(err)
@@ -79,7 +70,7 @@ func main() {
     fmt.Println("Ticket updated: ", ticket)
     fmt.Println("........")
 
-    toDelete := 1
+    toDelete := 5
     _, err = bookings.Delete(toDelete)
     if err != nil {
         panic(err)
@@ -87,5 +78,13 @@ func main() {
 
     fmt.Println("Ticket deleted: ", toDelete)
     fmt.Println("........")
+
+    err = f.Write(&newTicket)
+    if err != nil {
+        fmt.Println(err)
+    }
+    fmt.Println("Changes have been saved!")
+    fmt.Println("........")
+    
 
 }
