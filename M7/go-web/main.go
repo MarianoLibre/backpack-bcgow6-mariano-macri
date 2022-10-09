@@ -27,5 +27,7 @@ func main() {
 
     router.GET("/filterby", Filter)
 
+    router.GET("/byid/:id", FindById)
+
     router.Run(":8080")
 }

@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -50,10 +51,6 @@ func Filter(c *gin.Context) {
 
     if data, err = ioutil.ReadFile("./products.json"); err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"error": "Oops! Something went wrong..."})
-    }
-
-    if err != nil {
-        c.JSON(http.StatusInternalServerError, gin.H{"error": err})
     }
 
     var products All
@@ -104,6 +101,41 @@ func Filter(c *gin.Context) {
     }
 
     c.JSON(http.StatusOK, filteredByColour)
+
+}
+
+
+func FindById(c *gin.Context) {
+    var data []byte
+    var err error
+
+    if data, err = ioutil.ReadFile("./products.json"); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Oops! Something went wrong..."})
+        return
+    }
+
+    var products All
+    err = json.Unmarshal(data, &products)
+
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": err})
+        return
+    }
+   
+    id, err := strconv.ParseInt(c.Param("id"), 10, 64)
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": err})
+        return
+    }
+
+    for _, p := range products.Products {
+        if int(id) == p.Id {
+            c.JSON(http.StatusOK, p)
+            return
+        }
+    }
+
+    c.JSON(http.StatusNotFound, gin.H{"error": "Not found"})
 
 }
 
