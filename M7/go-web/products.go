@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -11,14 +12,14 @@ import (
 )
 
 type Product struct {
-    Id          int         //`json:"id"`
-    Name        string      //`json:"name"`
-    Colour      string      //`json:"colour"`
-    Price       float64     //`json:"price"`
-    Stock       int         //`json:"stock"`
-    Code        string      //`json:"code"`
-    Published   bool        //`json:"published"`
-    CreatedAt   string      //`json:"created-at"`
+    Id          int         `json:"id"`
+    Name        string      `json:"name"`
+    Colour      string      `json:"colour"`
+    Price       float64     `json:"price"`
+    Stock       int         `json:"stock"`
+    Code        string      `json:"code"`
+    Published   bool        `json:"published"`
+    CreatedAt   string      `json:"created-at"`
 }
 
 type All struct {
@@ -41,6 +42,7 @@ func GetAll(c *gin.Context) {
         c.JSON(http.StatusInternalServerError, gin.H{"error": err})
     }
 
+    fmt.Println(payload)
     c.JSON(http.StatusOK, payload)
 }
 

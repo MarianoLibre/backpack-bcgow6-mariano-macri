@@ -1,54 +1,54 @@
 {
   "products": [
     {
-      "Id": 1,
-      "Name": "Guitar",
-      "Colour": "red",
-      "Price": 500,
-      "Stock": 13,
-      "Code": "G1123",
-      "Published": true,
-      "CreatedAt": "05/10/2022"
+      "id": 1,
+      "name": "Guitar",
+      "colour": "red",
+      "price": 500,
+      "stock": 13,
+      "code": "G1123",
+      "published": true,
+      "created-at": "05/10/2022"
     },
     {
-      "Id": 2,
-      "Name": "Bass",
-      "Colour": "black",
-      "Price": 450,
-      "Stock": 10,
-      "Code": "B1124",
-      "Published": true,
-      "CreatedAt": "05/10/2022"
+      "id": 2,
+      "name": "Bass",
+      "colour": "black",
+      "price": 450,
+      "stock": 10,
+      "code": "B1124",
+      "published": true,
+      "created-at": "05/10/2022"
     },
     {
-      "Id": 3,
-      "Name": "Keyboard",
-      "Colour": "silver",
-      "Price": 700,
-      "Stock": 8,
-      "Code": "K1125",
-      "Published": true,
-      "CreatedAt": "05/10/2022"
+      "id": 3,
+      "name": "Keyboard",
+      "colour": "silver",
+      "price": 700,
+      "stock": 8,
+      "code": "K1125",
+      "published": true,
+      "created-at": "05/10/2022"
     },
     {
-      "Id": 4,
-      "Name": "Synth",
-      "Colour": "blue",
-      "Price": 1500,
-      "Stock": 17,
-      "Code": "S1126",
-      "Published": false,
-      "CreatedAt": "05/10/2022"
+      "id": 4,
+      "name": "Synth",
+      "colour": "blue",
+      "price": 1500,
+      "stock": 17,
+      "code": "S1126",
+      "published": false,
+      "created-at": "05/10/2022"
     },
     {
-      "Id": 5,
-      "Name": "Guitar",
-      "Colour": "black",
-      "Price": 3000,
-      "Stock": 3,
-      "Code": "G1127",
-      "Published": true,
-      "CreatedAt": "05/10/2022"
+      "id": 5,
+      "name": "Guitar",
+      "colour": "black",
+      "price": 3000,
+      "stock": 3,
+      "code": "G1127",
+      "published": true,
+      "created-at": "05/10/2022"
     }
   ]
 }
