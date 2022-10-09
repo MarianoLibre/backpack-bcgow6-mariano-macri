@@ -1,54 +1,54 @@
 {
   "products": [
-      {
-          "Id": 1,
-          "Name": "Guitar", 
-          "Colour": "red", 
-          "Price": 500.00,
-          "Stock": 13,
-          "Code": 1123,
-          "Published": true,
-          "CreatedAt": "05/10/2022"
-      },
-      {
-          "Id": 2,
-          "Name": "Bass", 
-          "Colour": "black", 
-          "Price": 450.00,
-          "Stock": 10,
-          "Code": 1124,
-          "Published": true,
-          "CreatedAt": "05/10/2022"
-      },
-      {
-          "Id": 3,
-          "Name": "Keyboard", 
-          "Colour": "silver", 
-          "Price": 700.00,
-          "Stock": 8,
-          "Code": 1125,
-          "Published": true,
-          "CreatedAt": "05/10/2022"
-      },
-      {
-          "Id": 4,
-          "Name": "Synth", 
-          "Colour": "blue", 
-          "Price": 1500.00,
-          "Stock": 17,
-          "Code": 1126,
-          "Published": false,
-          "CreatedAt": "05/10/2022"
-      },
-      {
-          "Id": 5,
-          "Name": "Guitar", 
-          "Colour": "black", 
-          "Price": 3000.00,
-          "Stock": 3,
-          "Code": 1127,
-          "Published": true,
-          "CreatedAt": "05/10/2022"
-      }
+    {
+      "Id": 1,
+      "Name": "Guitar",
+      "Colour": "red",
+      "Price": 500,
+      "Stock": 13,
+      "Code": "G1123",
+      "Published": true,
+      "CreatedAt": "05/10/2022"
+    },
+    {
+      "Id": 2,
+      "Name": "Bass",
+      "Colour": "black",
+      "Price": 450,
+      "Stock": 10,
+      "Code": "B1124",
+      "Published": true,
+      "CreatedAt": "05/10/2022"
+    },
+    {
+      "Id": 3,
+      "Name": "Keyboard",
+      "Colour": "silver",
+      "Price": 700,
+      "Stock": 8,
+      "Code": "K1125",
+      "Published": true,
+      "CreatedAt": "05/10/2022"
+    },
+    {
+      "Id": 4,
+      "Name": "Synth",
+      "Colour": "blue",
+      "Price": 1500,
+      "Stock": 17,
+      "Code": "S1126",
+      "Published": false,
+      "CreatedAt": "05/10/2022"
+    },
+    {
+      "Id": 5,
+      "Name": "Guitar",
+      "Colour": "black",
+      "Price": 3000,
+      "Stock": 3,
+      "Code": "G1127",
+      "Published": true,
+      "CreatedAt": "05/10/2022"
+    }
   ]
 }
