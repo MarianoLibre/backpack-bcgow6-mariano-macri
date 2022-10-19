@@ -1,0 +1,23 @@
+Ejercicio 1 
+¿Cuáles son las diferencias entre White Box y Black Box? 
+
+En los tests de black box no conocemos el funcionamiento interno de lo que testeamos y en los tests de white box si.
+
+Ejercicio 2
+¿Qué es un test funcional?.
+
+Son los test que evalúan que el software tenga el comportamiento esperado.
+
+Ejercicio 3
+¿Qué es un Test de Integración?
+
+Son los tests que prueban que las partes funcionen en conjunto como se espera.
+
+Ejercicio 4
+Indicar las dimensiones de calidad prioritarias en MELI.
+
+* Funcionalidad
+* Rendimiento
+* Fidelidad
+* Seguridad
+* Mantenibilidad
