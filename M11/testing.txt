@@ -17,7 +17,12 @@ Ejercicio 4
 Indicar las dimensiones de calidad prioritarias en MELI.
 
 * Funcionalidad
+  Que cumpla la función esperada.
 * Rendimiento
+  Que sea lo más rápido posible.
 * Fidelidad
+  Que demuestre un funcionamiento general sin fallas.
 * Seguridad
+  Que se hayan testeado todas las vulnerabilidades.
 * Mantenibilidad
+  Que siga las buenas prácticas y tenga la complejidad adecuada, lo que facilita su mantenimiento.
