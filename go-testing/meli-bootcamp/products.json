@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "pan flute",
+    "colour": "brown",
+    "price": 200,
+    "stock": 5,
+    "code": "ASDF",
+    "published": true,
+    "created-at": "Today"
+  },
+  {
+    "id": 2,
+    "name": "pan flute",
+    "colour": "brown",
+    "price": 200,
+    "stock": 5,
+    "code": "ASDF",
+    "published": true,
+    "created-at": "Today"
+  },
+  {
+    "id": 3,
+    "name": "guitar",
+    "colour": "black",
+    "price": 200,
+    "stock": 5,
+    "code": "ASDF",
+    "published": true,
+    "created-at": "Today"
+  },
+  {
+    "id": 4,
+    "name": "bass",
+    "colour": "red",
+    "price": 200,
+    "stock": 5,
+    "code": "ASDF",
+    "published": true,
+    "created-at": "Today"
+  },
+  {
+    "id": 5,
+    "name": "Keyboard",
+    "colour": "silver",
+    "price": 200,
+    "stock": 5,
+    "code": "ASDF",
+    "published": true,
+    "created-at": "Today"
+  }
+]
