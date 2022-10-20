@@ -1,0 +1,857 @@
+definitions:
+  domain.Buyer:
+    properties:
+      card_number_id:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      last_name:
+        type: string
+    type: object
+  handler.SectionRequest:
+    properties:
+      current_capacity:
+        type: integer
+      current_temperature:
+        type: integer
+      maximum_capacity:
+        type: integer
+      minimum_capacity:
+        type: integer
+      minimum_temperature:
+        type: integer
+      product_type_id:
+        type: integer
+      section_number:
+        type: integer
+      warehouse_id:
+        type: integer
+    required:
+    - current_capacity
+    - current_temperature
+    - maximum_capacity
+    - minimum_capacity
+    - minimum_temperature
+    - product_type_id
+    - section_number
+    - warehouse_id
+    type: object
+  handler.UpdateSectionRequest:
+    properties:
+      current_capacity:
+        type: integer
+      current_temperature:
+        type: integer
+      maximum_capacity:
+        type: integer
+      minimum_capacity:
+        type: integer
+      minimum_temperature:
+        type: integer
+      product_type_id:
+        type: integer
+      section_number:
+        type: integer
+      warehouse_id:
+        type: integer
+    type: object
+  handler.employeeDTO:
+    properties:
+      card_number_id:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      warehouse_id:
+        type: integer
+    required:
+    - card_number_id
+    - first_name
+    - last_name
+    - warehouse_id
+    type: object
+  handler.employeeToUpdateDTO:
+    properties:
+      card_number_id:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      warehouse_id:
+        type: integer
+    type: object
+  handler.request:
+    properties:
+      address:
+        type: string
+      minimum_capacity:
+        type: integer
+      minimum_temperature:
+        type: integer
+      telephone:
+        type: string
+      warehouse_code:
+        type: string
+    type: object
+  web.response:
+    properties:
+      data: {}
+    type: object
+info:
+  contact:
+    name: API Support
+    url: https://localhost:8080/
+  description: This API Handle MELI Products.
+  termsOfService: https://developers.mercadolibre.com.ar/es_ar/terminos-y-condiciones
+  title: MELI Bootcamp API FP
+  version: "1.0"
+paths:
+  /api/v1/products:
+    post:
+      consumes:
+      - application/json
+      description: create products
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: Product to create
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/handler.request'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Create products
+      tags:
+      - Products
+  /api/v1/products/:id:
+    delete:
+      consumes:
+      - application/json
+      description: delete product
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Delete product
+      tags:
+      - Products
+    patch:
+      consumes:
+      - application/json
+      description: update products
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: Product to update
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/handler.request'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Update products
+      tags:
+      - Products
+  /api/v1/warehouses:
+    delete:
+      consumes:
+      - application/json
+      description: delete warehouses
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Delete warehouse
+      tags:
+      - Warehouses
+    get:
+      consumes:
+      - application/json
+      description: get warehouses
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Get warehouse by id
+      tags:
+      - Warehouses
+    patch:
+      consumes:
+      - application/json
+      description: update warehouses
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Update warehouse
+      tags:
+      - Warehouses
+    post:
+      consumes:
+      - application/json
+      description: create warehouses
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Create warehouse
+      tags:
+      - Warehouses
+  /buyers:
+    get:
+      consumes:
+      - application/json
+      description: get buyers
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+        "204":
+          description: empty buyer list
+          schema:
+            $ref: '#/definitions/web.response'
+        "500":
+          description: internal server error
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: List buyers
+      tags:
+      - Buyers
+    post:
+      consumes:
+      - application/json
+      description: post new buyer
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: Buyer to create
+        in: body
+        name: domain.Buyer
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Buyer'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: buyer successfully created
+          schema:
+            $ref: '#/definitions/web.response'
+        "409":
+          description: The card number ID provided is already registered
+          schema:
+            $ref: '#/definitions/web.response'
+        "422":
+          description: 'error: ¡incomplete fields!'
+          schema:
+            $ref: '#/definitions/web.response'
+        "500":
+          description: error while saving
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Create buyer
+      tags:
+      - Buyers
+  /buyers/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete buyer by id
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/web.response'
+        "404":
+          description: buyer not found
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Delete buyer by id
+      tags:
+      - Buyers
+    get:
+      consumes:
+      - application/json
+      description: get buyer by id
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+        "401":
+          description: Buyer not exist
+          schema:
+            $ref: '#/definitions/web.response'
+        "404":
+          description: Buyer not found
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Get buyer by id
+      tags:
+      - Buyers
+    patch:
+      consumes:
+      - application/json
+      description: update buyer by id
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Buyer to update
+        in: body
+        name: domain.Buyer
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Buyer'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/web.response'
+        "404":
+          description: buyer not found
+          schema:
+            $ref: '#/definitions/web.response'
+        "422":
+          description: unprocessable entity
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Update buyer by id
+      tags:
+      - Buyers
+  /employees:
+    get:
+      parameters:
+      - description: Token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of employees
+          schema:
+            $ref: '#/definitions/web.response'
+        "401":
+          description: Unauthorized + invalid token
+          schema:
+            $ref: '#/definitions/web.response'
+        "404":
+          description: No employees found
+          schema:
+            $ref: '#/definitions/web.response'
+        "500":
+          description: Failure executing listing service
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Show the list of employees in db
+      tags:
+      - Employees
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: Employee to save
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/handler.employeeDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Employee created
+          schema:
+            $ref: '#/definitions/web.response'
+        "401":
+          description: Unauthorized + invalid token
+          schema:
+            $ref: '#/definitions/web.response'
+        "404":
+          description: The employee was saved, but it couldn't be retrieved by ID
+          schema:
+            $ref: '#/definitions/web.response'
+        "409":
+          description: The card number ID provided is already registered
+          schema:
+            $ref: '#/definitions/web.response'
+        "422":
+          description: Gin validator error
+          schema:
+            $ref: '#/definitions/web.response'
+        "500":
+          description: Failure executing creation service
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Save a new employee in db
+      tags:
+      - Employees
+  /employees/{id}:
+    delete:
+      parameters:
+      - description: Employee ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: token
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Malformed ID
+          schema:
+            $ref: '#/definitions/web.response'
+        "401":
+          description: 'Unauthorized: empty or invalid token'
+          schema:
+            $ref: '#/definitions/web.response'
+        "404":
+          description: Employee not found
+          schema:
+            $ref: '#/definitions/web.response'
+        "500":
+          description: Failure executing delete service
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Delete a required employee
+      tags:
+      - Employees
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Employee ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Employee
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Malformed ID
+          schema:
+            $ref: '#/definitions/web.response'
+        "401":
+          description: Unauthorized + invalid token
+          schema:
+            $ref: '#/definitions/web.response'
+        "404":
+          description: Employee not found
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Show the required employee
+      tags:
+      - Employees
+    patch:
+      consumes:
+      - application/json
+      parameters:
+      - description: Employee ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: token
+        type: string
+      - description: Employee fields to update
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/handler.employeeToUpdateDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Employee
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Malformed ID
+          schema:
+            $ref: '#/definitions/web.response'
+        "401":
+          description: 'Unauthorized: empty or invalid token'
+          schema:
+            $ref: '#/definitions/web.response'
+        "404":
+          description: Employee not found
+          schema:
+            $ref: '#/definitions/web.response'
+        "409":
+          description: The card number ID provided is already registered
+          schema:
+            $ref: '#/definitions/web.response'
+        "422":
+          description: Gin validator error
+          schema:
+            $ref: '#/definitions/web.response'
+        "500":
+          description: Failure executing update service
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Update the employee with the required fields
+      tags:
+      - Employees
+  /products:
+    get:
+      consumes:
+      - application/json
+      description: get products
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: List products
+      tags:
+      - Products
+  /products/:id:
+    get:
+      consumes:
+      - application/json
+      description: get product
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Get product
+      tags:
+      - Products
+  /sections:
+    get:
+      parameters:
+      - description: Token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of sections
+          schema:
+            $ref: '#/definitions/web.response'
+        "401":
+          description: Unauthorized + invalid token
+          schema:
+            $ref: '#/definitions/web.response'
+        "500":
+          description: 'Internal server error '
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Show the list of sections in db
+      tags:
+      - Sections
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: Section to save
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/handler.SectionRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created section
+          schema:
+            $ref: '#/definitions/web.response'
+        "401":
+          description: Unauthorized + invalid token
+          schema:
+            $ref: '#/definitions/web.response'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/web.response'
+        "422":
+          description: Gin validator error
+          schema:
+            $ref: '#/definitions/web.response'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Save a new section in db
+      tags:
+      - Sections
+  /sections/{id}:
+    delete:
+      parameters:
+      - description: Section ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: token
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/web.response'
+        "401":
+          description: 'Unauthorized: empty or invalid token'
+          schema:
+            $ref: '#/definitions/web.response'
+        "404":
+          description: Section not found
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Delete a required section
+      tags:
+      - Sections
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Section ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Section
+          schema:
+            $ref: '#/definitions/web.response'
+        "401":
+          description: Unauthorized + invalid token
+          schema:
+            $ref: '#/definitions/web.response'
+        "404":
+          description: Section not found
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Show the required section
+      tags:
+      - Sections
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Section ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: token
+        type: string
+      - description: Section fields to update
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/handler.UpdateSectionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Section
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/web.response'
+        "401":
+          description: 'Unauthorized: empty or invalid token'
+          schema:
+            $ref: '#/definitions/web.response'
+        "404":
+          description: Section no found
+          schema:
+            $ref: '#/definitions/web.response'
+        "409":
+          description: Section number is already in use
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Update the section with the required fields
+      tags:
+      - Sections
+swagger: "2.0"
