@@ -2,4 +2,4 @@
 
 # Importante:
 
-### Práctica iniciada en la carpeta "backpack-..."
+### Copia de "meli-bootcamp" para el módulo **Testing**
