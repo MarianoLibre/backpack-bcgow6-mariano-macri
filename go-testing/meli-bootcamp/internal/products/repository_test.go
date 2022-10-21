@@ -12,6 +12,7 @@ import (
 type StubStore struct{
 	mockedData []Product
 	readWasCalled bool
+	writeWasCalled bool
 }
 
 func (s *StubStore) Read(data interface{}) error {
@@ -25,6 +26,7 @@ func (s *StubStore) Read(data interface{}) error {
 }
 
 func (s *StubStore) Write(data interface{}) error{
+	s.writeWasCalled = true
 	return nil
 }
 
