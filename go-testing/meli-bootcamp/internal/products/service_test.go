@@ -31,10 +31,11 @@ func (m *MockStorage) Write(data interface{}) error {
 		return fmt.Errorf(m.errWrite)
 	}
 	a := data.([]Product)
-	m.dataMock = append(m.dataMock, a[len(a)-1])
+	m.dataMock = a
 	return nil
 }
 
+// Ejercicio 1 - Service/Repo/Db Update()
 func TestServiceUpdate(t *testing.T) {
 	product := Product{
 		Id:        1,
@@ -78,4 +79,45 @@ func TestServiceUpdate(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, result, updated)
 	assert.True(t, mockedStorage.readWasCalled)
+}
+
+// Ejercicio 2 - Service/Repo/Db Delete()
+func TestServiceDelete(t *testing.T) {
+	p1 := Product{
+			Id: 1,
+			Name: "tablse",
+			Colour: "black",
+			Price: 200.5,
+			Stock: 12,
+			Code: "XXX",
+			Published: true,
+			CreatedAt: "today",
+		}
+	p2 := Product{
+			Id: 2,
+			Name: "celu",
+			Colour: "red",
+			Price: 500.5,
+			Stock: 12,
+			Code: "ZZZ",
+			Published: true,
+			CreatedAt: "today",
+		}
+	database := []Product{p1, p2}
+
+	mockedStorage := MockStorage{dataMock: database}
+	rp := NewRepository(&mockedStorage)
+	svc := NewService(rp)
+
+	err := svc.Delete(2)
+	assert.Nil(t, err)
+	assert.True(t, mockedStorage.readWasCalled)
+	assert.True(t, mockedStorage.writeWasCalled)
+	assert.Equal(t, mockedStorage.dataMock, []Product{p1})
+
+	err = svc.Delete(2)
+	assert.NotNil(t, err)
+	assert.True(t, mockedStorage.readWasCalled)
+	assert.True(t, mockedStorage.writeWasCalled)
+	assert.Equal(t, mockedStorage.dataMock, []Product{p1})
 }
