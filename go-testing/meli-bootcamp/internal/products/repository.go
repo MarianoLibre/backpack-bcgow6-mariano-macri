@@ -39,7 +39,9 @@ func NewRepository(db store.Store) Repository {
 
 func (r *repository) GetAll() ([]Product, error) {
 	var ps []Product
-	r.db.Read(&ps)
+	if err := r.db.Read(&ps); err != nil {
+		return ps, err
+	}
 	return ps, nil
 }
 
@@ -67,7 +69,9 @@ func (r *repository) Store(id int, name, colour, code, createdAt string, stock i
 	p := Product{id, name, colour, price, stock, code, published, createdAt}
 
 	var ps []Product
-	r.db.Read(&ps)
+	if err := r.db.Read(&ps); err != nil {
+		return Product{}, err
+	}
 	ps = append(ps, p)
 	//fmt.Println("REPOSITORY>>> ", id, name, colour, code, createdAt)
 	if err := r.db.Write(ps); err != nil {
@@ -80,7 +84,9 @@ func (r *repository) Update(id int, name, colour, code, createdAt string, stock 
 	p := Product{Name: name, Colour: colour, Code: code, CreatedAt: createdAt, Stock: stock, Price: price, Published: published}
 	updated := false
 	var ps []Product
-	r.db.Read(&ps)
+	if err := r.db.Read(&ps); err != nil {
+		return Product{}, err
+	}
 	for i := range ps {
 		if ps[i].Id == id {
 			p.Id = id
@@ -98,7 +104,9 @@ func (r *repository) UpdateName(id int, name string) (Product, error) {
 	var p Product
 	updated := false
 	var ps []Product
-	r.db.Read(&ps)
+	if err := r.db.Read(&ps); err != nil {
+		return Product{}, err
+	}
 	for i := range ps {
 		if ps[i].Id == id {
 			ps[i].Name = name
@@ -116,7 +124,9 @@ func (r *repository) UpdateNameAndPrice(id int, name string, price float64) (Pro
 	var p Product
 	updated := false
 	var ps []Product
-	r.db.Read(&ps)
+	if err := r.db.Read(&ps); err != nil {
+		return Product{}, err
+	}
 	for i := range ps {
 		if ps[i].Id == id {
 			ps[i].Name = name
@@ -135,7 +145,9 @@ func (r *repository) Delete(id int) error {
 	deleted := false
 	var index int
 	var ps []Product
-	r.db.Read(&ps)
+	if err := r.db.Read(&ps); err != nil {
+		return  err
+	}
 	for i := range ps {
 		if ps[i].Id == id {
 			index = i

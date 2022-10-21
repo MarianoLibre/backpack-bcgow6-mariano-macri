@@ -43,5 +43,7 @@ func main() {
 	pr.PUT("/:id", p.Update())
 	pr.PATCH("/:id", p.UpdateNameAndPrice())
 	pr.DELETE("/:id", p.Delete())
-	r.Run()
+	if r.Run() != nil {
+		os.Exit(1)
+	}
 }
