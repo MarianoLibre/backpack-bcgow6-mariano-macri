@@ -34,3 +34,7 @@ Mon Oct 24 13:42:40 -03 2022
 - create fake server
 - create request and response recorder
 - coverage has reached __80%__ :thumbsup:
+
+Mon Oct 24 14:22:11 -03 2022
+- create failServer using NewMockedRepository to test read fail
+- ¡coverage has reached __100%__ :blush: !
