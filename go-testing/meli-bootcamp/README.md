@@ -7,4 +7,4 @@
 > Nota:
 > El test funcional está completo, pero...
 >
-> _Los métodos "update[what]" de este proyecto no guardan los cambios en "products.json" :sweat_smile:
+> _Los métodos "update[what]" de este proyecto no guardan los cambios en "products.json"_ :sweat_smile:
