@@ -23,7 +23,7 @@ func createServer() *gin.Engine {
 	r := gin.Default()
 
 	pr := r.Group("/products")
-	pr.POST("/", p.Store())
+	pr.POST("", p.Store())
 	pr.PATCH("/:id", p.Update())
 	pr.DELETE("/:id", p.Delete())
 	return r
@@ -41,7 +41,7 @@ func Test_UpdateProduct(t *testing.T) {
 	r := createServer()
 
 	// Creata a product
-	req, rr := createRequestTest(http.MethodPost, "/products/",
+	req, rr := createRequestTest(http.MethodPost, "/products",
 		`{
 		"name": "new product",
 		"colour": "new colour",
