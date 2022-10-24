@@ -23,3 +23,8 @@ Mon Oct 24 12:43:31 -03 2022 (Test Service)
 - query validation is only done in the handler
 - test: `err == nil`: :thumbsup:
 - test: `data == mockedData`: :thumbsup:
+
+Mon Oct 24 13:40:20 -03 2022
+- add "mockedRepository" to test error response
+- test for errors and empty data
+- coverage so far is __50%__ 
