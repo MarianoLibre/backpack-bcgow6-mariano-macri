@@ -67,6 +67,16 @@ func TestGetAll(t *testing.T) {
 
 	assert.Nil(t, err)
 	assert.Equal(t, expected, out)
+
+	db = &StubStore{mockedData: expected, errRead: "err"}
+	r = NewRepository(db)
+
+	out, err = r.GetAll()
+
+	assert.NotNil(t, err)
+
+	expected = []Product{}
+	assert.Equal(t, expected, out)
 }
 
 // UpdateName

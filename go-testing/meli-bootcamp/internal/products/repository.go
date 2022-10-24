@@ -40,7 +40,7 @@ func NewRepository(db store.Store) Repository {
 func (r *repository) GetAll() ([]Product, error) {
 	var ps []Product
 	if err := r.db.Read(&ps); err != nil {
-		return ps, err
+		return []Product{}, err
 	}
 	return ps, nil
 }
