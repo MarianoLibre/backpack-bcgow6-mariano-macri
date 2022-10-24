@@ -28,3 +28,9 @@ Mon Oct 24 13:40:20 -03 2022
 - add "mockedRepository" to test error response
 - test for errors and empty data
 - coverage so far is __50%__ 
+
+Mon Oct 24 13:42:40 -03 2022
+- add "handler_test.go"
+- create fake server
+- create request and response recorder
+- coverage has reached __80%__ :thumbsup:
