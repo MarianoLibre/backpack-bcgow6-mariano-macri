@@ -2,6 +2,9 @@
 
 Proyecto Base para cumplir el Desafio de Testing
 
+![image](https://user-images.githubusercontent.com/114087997/197588709-a5e35f67-fa6b-4ed1-90b2-6267751eeb82.png)
+
+
 ## Changelog
 
 Mon Oct 24 10:50:27 -03 2022
