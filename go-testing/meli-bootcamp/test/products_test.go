@@ -38,11 +38,11 @@ func createRequestTest(method, url, body string) (*http.Request, *httptest.Respo
 }
 
 func Test_UpdateProduct(t *testing.T) {
-    r := createServer()
+	r := createServer()
 
 	// Creata a product
 	req, rr := createRequestTest(http.MethodPost, "/products/",
-	`{
+		`{
 		"name": "new product",
 		"colour": "new colour",
 		"price": 123.45,
@@ -52,11 +52,11 @@ func Test_UpdateProduct(t *testing.T) {
 		"created-at": "new date"
 	}`)
 
-    r.ServeHTTP(rr, req)
-    assert.Equal(t, 200, rr.Code)
+	r.ServeHTTP(rr, req)
+	assert.Equal(t, 200, rr.Code)
 
 	req, rr = createRequestTest(http.MethodPatch, "/products/1",
-	`{
+		`{
 		"name": "updated product",
 		"colour": "updated colour",
 		"price": 123.45,
@@ -66,13 +66,12 @@ func Test_UpdateProduct(t *testing.T) {
 		"created-at": "updated date"
 	}`)
 
-    r.ServeHTTP(rr, req)
-    assert.Equal(t, 200, rr.Code)
+	r.ServeHTTP(rr, req)
+	assert.Equal(t, 200, rr.Code)
 
 	req, rr = createRequestTest(http.MethodDelete, "/products/1", "")
 
-    r.ServeHTTP(rr, req)
+	r.ServeHTTP(rr, req)
 
-    assert.Equal(t, 200, rr.Code)
+	assert.Equal(t, 200, rr.Code)
 }
-
