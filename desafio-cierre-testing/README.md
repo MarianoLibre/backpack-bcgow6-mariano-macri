@@ -10,3 +10,6 @@ Mon Oct 24 10:50:27 -03 2022
 - fix imports accordingly
 - new "go.mod" and "go.sum" with `go mod tidy`
 - update README :blush:
+
+Mon Oct 24 11:44:38 -03 2022
+- API tested with __Insomnia: OK__
