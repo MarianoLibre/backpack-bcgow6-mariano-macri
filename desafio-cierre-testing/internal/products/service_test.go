@@ -11,7 +11,7 @@ const errMsg = "Oops!"
 
 type mockedRepository struct {}
 
-func newMockedRepository() Repository {
+func NewMockedRepository() Repository {
 	return &mockedRepository{}
 }
 
@@ -36,7 +36,7 @@ func Test_GetAllBySeller(t *testing.T) {
 		Price: 123.55,
 	})
 
-	repo = newMockedRepository()
+	repo = NewMockedRepository()
 	svc = NewService(repo)
 	// This will return an err...
 	data, err = svc.GetAllBySeller("WTF!")
