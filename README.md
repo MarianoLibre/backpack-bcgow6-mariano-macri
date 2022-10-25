@@ -4,13 +4,16 @@ _backpack-bcgow6-mariano-macri_
 
 > Este repositorio contiene las soluciones a las prácticas realizadas durante el bootcamp. Algunos desafíos/proyectos integradores se encuentran _en su propio repositorio_.
 
+![journey](https://user-images.githubusercontent.com/114087997/197656679-458ac5f8-9c37-44db-9df8-cf9456361866.png)
+
+
 ### Índice
 - [Módulo 1: Bienvenida](#módulo-1-bienvenida)
 - [Módulo 2: Compliance](#módulo-2-compliance)
 - [Módulo 3: Git](#módulo-3-git)
 - [Módulo 4: Go bases](#módulo-4-go-bases)
 - [Módulo 5: Adn en IT](#módulo-5-adn-en-it)
-- [Módulo 6: Org design & wow en IT](#módulo-6-org-design-&-wow-en-it)
+- [Módulo 6: Org design & wow en IT](#módulo-6-org-design--wow-en-it)
 - [Módulo 7: Go web](#módulo-7-go-web)
 - [Módulo 8: Career development en IT](#módulo-8-career-development-en-it)
 - [Módulo 9: Sprint 1](#módulo-9-sprint-1)
