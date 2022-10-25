@@ -19,7 +19,7 @@ func (mr *mockedRepository) GetAllBySeller(SellerID string) ([]Product, error) {
 	return nil, errors.New(errMsg)
 }
 
-func Test_GetAllBySeller(t *testing.T) {
+func Test_Integration_GetAllBySeller(t *testing.T) {
 	// Repository already contains mocked data, no need to mock anything here...
 	repo := NewRepository()
 	svc := NewService(repo)
@@ -35,11 +35,13 @@ func Test_GetAllBySeller(t *testing.T) {
 		Description: "generic product",
 		Price: 123.55,
 	})
+}
 
-	repo = NewMockedRepository()
-	svc = NewService(repo)
+func Test_Unit_GetAllBySeller(t *testing.T) {
+	repo := NewMockedRepository()
+	svc := NewService(repo)
 	// This will return an err...
-	data, err = svc.GetAllBySeller("WTF!")
+	data, err := svc.GetAllBySeller("WTF!")
 	assert.Nil(t, data)
 	assert.NotNil(t, err)
 	assert.Equal(t, err, errors.New(errMsg))
