@@ -13,6 +13,7 @@ The idea is to immplement a simple API using Go and MySQL, implementing the __re
 Creata an API for use in libraries.
 
 ERD:
+
 ![Libraries ERD](./erd_library.png)
 
 # Tools:
