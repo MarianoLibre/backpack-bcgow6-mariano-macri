@@ -79,7 +79,7 @@ func (r *repository) Update(book domain.Book) error {
 		return err
 	}
 
-	result, err := statement.Exec(&book.Title, &book.Quantity)
+	result, err := statement.Exec(&book.Title, &book.Quantity, &book.Id)
 	if err != nil {
 		return err
 	}
