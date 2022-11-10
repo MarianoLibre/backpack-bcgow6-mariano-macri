@@ -19,32 +19,33 @@ ERD:
 File structure:
 
 ```
-</M16/library/
-▾     cmd/server/
-  ▾     handler/
-          book.go
-          library.go
-          user.go
-  ▾     routes/
-          routes.go
-        main.go
-▾     internal/
-  ▾     book/
-          repository.go
-          service.go
-  ▾     domain/
-          book.go
-          library.go
-          user.go
-  ▾     library/
-          repository.go
-          service.go
-  ▾     user/
-          repository.go
-          service.go
-      db-script.sql
-      go.mod
-      go.sum
+M16/library/
+├── cmd
+│   └── server
+│       ├── handler
+│       │   ├── book.go
+│       │   ├── library.go
+│       │   └── user.go
+│       ├── main.go
+│       └── routes
+│           └── routes.go
+├── db-script.sql
+├── go.mod
+├── go.sum
+└── internal
+    ├── book
+    │   ├── repository.go
+    │   └── service.go
+    ├── domain
+    │   ├── book.go
+    │   ├── library.go
+    │   └── user.go
+    ├── library
+    │   ├── repository.go
+    │   └── service.go
+    └── user
+        ├── repository.go
+        └── service.go
 ```
 
 # Tools:
