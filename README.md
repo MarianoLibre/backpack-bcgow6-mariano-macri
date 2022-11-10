@@ -66,6 +66,13 @@ Las prácticas de este módulo se encuentran en la carpeta [M4](https://github.c
 ## Módulo 14: Seguridad y compliance ii
 ## Módulo 15: Introducción a base de datos
 ## Módulo 16: Implementación de base de datos
+
+Las prácticas de este módulo se encuentran en la carpeta [M16](https://github.com/MarianoLibre/backpack-bcgow6-mariano-macri/tree/main/M16)
+
+> Nota bene: Para poner en práctica los conocimientos aprendidos creé un proyecto desde cero. Consta de una API sencilla para un grupo de bibliotecas. En este proyecto se aplican la creación de entidades, tablas, relaciones, base de datos, implementación del patrón repositorio, etc.
+
+[diagrama de entidad-relación](./M16/erd_library.png)
+
 ## Módulo 17: Sprint 3
 ## Módulo 18: Sistemas distribuídos
 ## Módulo 19: Introducción a Fury
