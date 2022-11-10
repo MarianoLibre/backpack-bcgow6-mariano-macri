@@ -9,45 +9,44 @@ import (
 	"library.com/internal/domain"
 )
 
-
 type Book struct {
 	BookService book.Service
 }
 
-func NewBook (bs book.Service) *Book {
+func NewBook(bs book.Service) *Book {
 	return &Book{bs}
 }
 
-func (b *Book) GetAll() gin.HandlerFunc {
+func (b *Book) GetAllBooks() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		data, err := b.BookService.GetAll()
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, err.Error())
 			return
 		}
-		ctx.JSON(http.StatusOK, data)		
+		ctx.JSON(http.StatusOK, data)
 	}
 }
 
-func (b *Book) Get() gin.HandlerFunc {
+func (b *Book) GetBook() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, err.Error())
-			return  
+			return
 		}
-		
+
 		book, err := b.BookService.Get(int(id))
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, err.Error())
-			return  
+			return
 		}
 
 		ctx.JSON(http.StatusOK, book)
 	}
 }
 
-func (b *Book) Store() gin.HandlerFunc {
+func (b *Book) StoreBook() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var request domain.Book
 		if err := ctx.Bind(&request); err != nil {
@@ -74,12 +73,12 @@ func (b *Book) Store() gin.HandlerFunc {
 	}
 }
 
-func (b *Book) Update() gin.HandlerFunc {
+func (b *Book) UpdateBook() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, err.Error())
-			return  
+			return
 		}
 
 		var request domain.Book
@@ -102,12 +101,12 @@ func (b *Book) Update() gin.HandlerFunc {
 			ctx.JSON(http.StatusInternalServerError, err.Error())
 			return
 		}
-		
+
 		ctx.JSON(http.StatusOK, request)
 	}
 }
 
-func (b *Book) Delete() gin.HandlerFunc {
+func (b *Book) DeleteBook() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 		if err != nil {

@@ -15,7 +15,7 @@ func main() {
 	fmt.Println("pre: ", os.Getenv("SOMEVAR"))
 
 	if godotenv.Load() != nil {
-		fmt.Println("Can't load env vars");
+		fmt.Println("Can't load env vars")
 		os.Exit(1)
 	}
 
@@ -26,7 +26,7 @@ func main() {
 	fmt.Println("post: ", os.Getenv("DB"))
 
 	fmt.Println("End")
-	
+
 	db.Init()
 	db.DataBase.Ping()
 }

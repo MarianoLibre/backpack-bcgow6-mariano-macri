@@ -2,7 +2,6 @@ package book
 
 import "library.com/internal/domain"
 
-
 type Service interface {
 	GetAll() ([]domain.Book, error)
 	Get(int) (domain.Book, error)

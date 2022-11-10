@@ -2,7 +2,6 @@ package library
 
 import "library.com/internal/domain"
 
-
 type Service interface {
 	GetAll() ([]domain.Library, error)
 	Get(int) (domain.Library, error)
