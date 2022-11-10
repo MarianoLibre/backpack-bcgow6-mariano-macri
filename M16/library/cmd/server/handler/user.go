@@ -17,7 +17,7 @@ func NewUser(us user.Service) *User {
 	return &User{us}
 }
 
-func (u *User) GetAllLibraries() gin.HandlerFunc {
+func (u *User) GetAllUsers() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		data, err := u.UserSevice.GetAll()
 		if err != nil {
@@ -28,7 +28,7 @@ func (u *User) GetAllLibraries() gin.HandlerFunc {
 	}
 }
 
-func (u *User) GetLibrary() gin.HandlerFunc {
+func (u *User) GetUser() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 		if err != nil {
@@ -46,7 +46,7 @@ func (u *User) GetLibrary() gin.HandlerFunc {
 	}
 }
 
-func (u *User) StoreLibrary() gin.HandlerFunc {
+func (u *User) StoreUser() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var request domain.User
 		if err := ctx.Bind(&request); err != nil {
@@ -73,7 +73,7 @@ func (u *User) StoreLibrary() gin.HandlerFunc {
 	}
 }
 
-func (u *User) UpdateLibrary() gin.HandlerFunc {
+func (u *User) UpdateUser() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 		if err != nil {
@@ -106,7 +106,7 @@ func (u *User) UpdateLibrary() gin.HandlerFunc {
 	}
 }
 
-func (u *User) DeleteLibrary() gin.HandlerFunc {
+func (u *User) DeleteUser() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 		if err != nil {
