@@ -16,6 +16,37 @@ ERD:
 
 ![Libraries ERD](./erd_library.png)
 
+File structure:
+
+```
+</M16/library/
+▾     cmd/server/
+  ▾     handler/
+          book.go
+          library.go
+          user.go
+  ▾     routes/
+          routes.go
+        main.go
+▾     internal/
+  ▾     book/
+          repository.go
+          service.go
+  ▾     domain/
+          book.go
+          library.go
+          user.go
+  ▾     library/
+          repository.go
+          service.go
+  ▾     user/
+          repository.go
+          service.go
+      db-script.sql
+      go.mod
+      go.sum
+```
+
 # Tools:
 
 ERD: [PlantUML](https://plantuml.com/)
