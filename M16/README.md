@@ -19,7 +19,7 @@ ERD:
 File structure:
 
 ```
-M16/library/
+.
 ├── cmd
 │   └── server
 │       ├── handler
@@ -29,7 +29,9 @@ M16/library/
 │       ├── main.go
 │       └── routes
 │           └── routes.go
-├── db-script.sql
+├── db
+│   ├── db-script.sql
+│   └── db.go
 ├── go.mod
 ├── go.sum
 └── internal
