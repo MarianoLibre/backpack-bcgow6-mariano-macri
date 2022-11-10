@@ -71,7 +71,7 @@ Las prácticas de este módulo se encuentran en la carpeta [M16](https://github.
 
 > Nota bene: Para poner en práctica los conocimientos aprendidos creé un proyecto desde cero. Consta de una API sencilla para un grupo de bibliotecas. En este proyecto se aplican la creación de entidades, tablas, relaciones, base de datos, implementación del patrón repositorio, etc.
 
-[diagrama de entidad-relación](./M16/erd_library.png)
+![diagrama de entidad-relación](./M16/erd_library.png)
 
 ## Módulo 17: Sprint 3
 ## Módulo 18: Sistemas distribuídos
