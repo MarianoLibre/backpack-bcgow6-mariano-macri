@@ -59,6 +59,7 @@ func (r *repository) Save(book domain.Book) (int, error) {
 	if err != nil {
 		return 0, err
 	}
+	defer statement.Close()
 
 	result, err := statement.Exec(&book.Title, &book.Quantity)
 	if err != nil {
@@ -78,6 +79,7 @@ func (r *repository) Update(book domain.Book) error {
 	if err != nil {
 		return err
 	}
+	defer statement.Close()
 
 	result, err := statement.Exec(&book.Title, &book.Quantity, &book.Id)
 	if err != nil {
@@ -97,6 +99,7 @@ func (r *repository) Delete(id int) error {
 	if err != nil {
 		return err
 	}
+	defer statement.Close()
 
 	result, err := statement.Exec(id)
 	if err != nil {
