@@ -10,7 +10,7 @@ import (
 type Repository interface {
 	GetAll() ([]domain.User, error)
 	Get(int) (domain.User, error)
-	Save(domain.User) (int, error)
+	Save(domain.User) (domain.User, error)
 	Update(domain.User) error
 	Delete(int) error
 }
@@ -54,23 +54,24 @@ func (r *repository) Get(id int) (domain.User, error) {
 	return user, nil
 }
 
-func (r *repository) Save(user domain.User) (int, error) {
-	statement, err := r.database.Prepare("insert into User (Name, Age) values (? ?)")
+func (r *repository) Save(user domain.User) (domain.User, error) {
+	statement, err := r.database.Prepare("insert into User (Name, Age) values (?, ?)")
 	if err != nil {
-		return 0, err
+		return domain.User{}, err
 	}
 
 	result, err := statement.Exec(&user.Name, &user.Age)
 	if err != nil {
-		return 0, err
+		return domain.User{}, err
 	}
 
 	id, err := result.LastInsertId()
 	if err != nil {
-		return 0, err
+		return domain.User{}, err
 	}
 
-	return int(id), nil
+	user.Id = int(id)
+	return user, nil
 }
 
 func (r *repository) Update(user domain.User) error {

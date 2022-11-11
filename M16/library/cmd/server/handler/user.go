@@ -62,14 +62,13 @@ func (u *User) StoreUser() gin.HandlerFunc {
 			return
 		}
 
-		id, err := u.UserSevice.Save(request)
+		result, err := u.UserSevice.Save(request)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, err)
 			return
 		}
 
-		request.Id = id
-		ctx.JSON(http.StatusOK, request)
+		ctx.JSON(http.StatusOK, result)
 	}
 }
 

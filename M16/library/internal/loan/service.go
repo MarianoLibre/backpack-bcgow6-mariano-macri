@@ -1,12 +1,12 @@
-package book
+package loan
 
 import "library.com/internal/domain"
 
 type Service interface {
-	GetAll() ([]domain.Book, error)
-	Get(int) (domain.Book, error)
-	Save(domain.Book) (int, error)
-	Update(domain.Book) error
+	GetAll() ([]domain.Loan, error)
+	Get(int) (domain.Loan, error)
+	Save(domain.Loan) (int, error)
+	Update(domain.Loan) error
 	Delete(int) error
 }
 
@@ -20,20 +20,20 @@ func NewService(r Repository) Service {
 	}
 }
 
-func (s *service) GetAll() ([]domain.Book, error) {
+func (s *service) GetAll() ([]domain.Loan, error) {
 	return s.repository.GetAll()
 }
 
-func (s *service) Get(id int) (domain.Book, error) {
+func (s *service) Get(id int) (domain.Loan, error) {
 	return s.repository.Get(id)
 }
 
-func (s *service) Save(book domain.Book) (int, error) {
-	return s.repository.Save(book)
+func (s *service) Save(loan domain.Loan) (int, error) {
+	return s.repository.Save(loan)
 }
 
-func (s *service) Update(book domain.Book) error {
-	return s.repository.Update(book)
+func (s *service) Update(loan domain.Loan) error {
+	return s.repository.Update(loan)
 }
 
 func (s *service) Delete(id int) error {

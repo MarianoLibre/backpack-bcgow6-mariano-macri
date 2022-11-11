@@ -7,6 +7,7 @@ import (
 	"library.com/cmd/server/handler"
 	"library.com/internal/book"
 	"library.com/internal/library"
+	"library.com/internal/loan"
 	"library.com/internal/user"
 )
 
@@ -30,6 +31,7 @@ func (r *router) MapRoutes() {
 	r.buildBookRoutes()
 	r.buildLibraryRoutes()
 	r.buildUserRoutes()
+	r.buildLoanRoutes()
 }
 
 func (r *router) setGroup() {
@@ -70,4 +72,16 @@ func (r *router) buildLibraryRoutes() {
 	r.rg.POST("/libraries", h.StoreLibrary())
 	r.rg.PUT("/libraries/:id", h.UpdateLibrary())
 	r.rg.DELETE("/libraries/:id", h.DeleteLibrary())
+}
+
+func (r *router) buildLoanRoutes() {
+	repo := loan.NewRepository(r.db)
+	svc := loan.NewService(repo)
+	h := handler.NewLoan(svc)
+
+	r.rg.GET("/loans", h.GetAllLoans())
+	r.rg.GET("/loans/:id", h.GetLoan())
+	r.rg.POST("/loans", h.StoreLoan())
+	r.rg.PUT("/loans/:id", h.UpdateLoan())
+	r.rg.DELETE("/loans/:id", h.DeleteLoan())
 }

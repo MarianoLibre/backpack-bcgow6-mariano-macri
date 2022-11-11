@@ -9,6 +9,8 @@ import (
 func main() {
 	db.Init()
 
+	gin.SetMode(gin.ReleaseMode)
+
 	eng := gin.Default()
 
 	router := routes.NewRouter(eng, db.DataBase)

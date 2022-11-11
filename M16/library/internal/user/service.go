@@ -5,7 +5,7 @@ import "library.com/internal/domain"
 type Service interface {
 	GetAll() ([]domain.User, error)
 	Get(int) (domain.User, error)
-	Save(domain.User) (int, error)
+	Save(domain.User) (domain.User, error)
 	Update(domain.User) error
 	Delete(int) error
 }
@@ -28,7 +28,7 @@ func (s *service) Get(id int) (domain.User, error) {
 	return s.repository.Get(id)
 }
 
-func (s *service) Save(user domain.User) (int, error) {
+func (s *service) Save(user domain.User) (domain.User, error) {
 	return s.repository.Save(user)
 }
 

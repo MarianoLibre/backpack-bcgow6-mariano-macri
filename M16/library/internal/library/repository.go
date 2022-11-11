@@ -55,7 +55,7 @@ func (r *repository) Get(id int) (domain.Library, error) {
 }
 
 func (r *repository) Save(library domain.Library) (int, error) {
-	statement, err := r.database.Prepare("insert into Library (Name, Address, PhoneNumber) values (? ? ?)")
+	statement, err := r.database.Prepare("insert into Library (Name, Address, PhoneNumber) values (?, ?, ?)")
 	if err != nil {
 		return 0, err
 	}
