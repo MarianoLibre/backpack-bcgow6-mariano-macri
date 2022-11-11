@@ -65,9 +65,9 @@ func (r *router) buildLibraryRoutes() {
 	svc := library.NewService(repo)
 	h := handler.NewLibrary(svc)
 
-	r.rg.GET("/librarys", h.GetAllLibraries())
-	r.rg.GET("/librarys/:id", h.GetLibrary())
-	r.rg.POST("/librarys", h.StoreLibrary())
-	r.rg.PUT("/librarys/:id", h.UpdateLibrary())
-	r.rg.DELETE("/librarys/:id", h.DeleteLibrary())
+	r.rg.GET("/libraries", h.GetAllLibraries())
+	r.rg.GET("/libraries/:id", h.GetLibrary())
+	r.rg.POST("/libraries", h.StoreLibrary())
+	r.rg.PUT("/libraries/:id", h.UpdateLibrary())
+	r.rg.DELETE("/libraries/:id", h.DeleteLibrary())
 }
