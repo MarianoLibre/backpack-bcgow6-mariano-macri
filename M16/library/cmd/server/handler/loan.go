@@ -53,15 +53,6 @@ func (b *Loan) StoreLoan() gin.HandlerFunc {
 			ctx.JSON(http.StatusInternalServerError, err.Error())
 		}
 
-		switch {
-		case request.BookId == 0:
-			ctx.JSON(http.StatusBadRequest, "BookId must be provided")
-			return
-		case request.UserId == 0:
-			ctx.JSON(http.StatusBadRequest, "UserId must be greater than 0")
-			return
-		}
-
 		id, err := b.LoanService.Save(request)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, err)
@@ -84,15 +75,6 @@ func (b *Loan) UpdateLoan() gin.HandlerFunc {
 		var request domain.Loan
 		if err := ctx.Bind(&request); err != nil {
 			ctx.JSON(http.StatusInternalServerError, err.Error())
-		}
-
-		switch {
-		case request.BookId == 0:
-			ctx.JSON(http.StatusBadRequest, "BookId must be provided")
-			return
-		case request.UserId == 0:
-			ctx.JSON(http.StatusBadRequest, "UserId must be greater than 0")
-			return
 		}
 
 		request.Id = int(id)

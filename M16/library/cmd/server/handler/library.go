@@ -53,18 +53,6 @@ func (l *Library) StoreLibrary() gin.HandlerFunc {
 			ctx.JSON(http.StatusInternalServerError, err.Error())
 		}
 
-		switch {
-		case request.Name == "":
-			ctx.JSON(http.StatusBadRequest, "Name must be provided")
-			return
-		case request.Address == "":
-			ctx.JSON(http.StatusBadRequest, "Address must be provided")
-			return
-		case request.PhoneNumber == "":
-			ctx.JSON(http.StatusBadRequest, "PhoneNumber must be provided")
-			return
-		}
-
 		id, err := l.LibraryService.Save(request)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, err)
@@ -87,18 +75,6 @@ func (l *Library) UpdateLibrary() gin.HandlerFunc {
 		var request domain.Library
 		if err := ctx.Bind(&request); err != nil {
 			ctx.JSON(http.StatusInternalServerError, err.Error())
-		}
-
-		switch {
-		case request.Name == "":
-			ctx.JSON(http.StatusBadRequest, "Name must be provided")
-			return
-		case request.Address == "":
-			ctx.JSON(http.StatusBadRequest, "Address must be provided")
-			return
-		case request.PhoneNumber == "":
-			ctx.JSON(http.StatusBadRequest, "PhoneNumber must be provided")
-			return
 		}
 
 		request.Id = int(id)

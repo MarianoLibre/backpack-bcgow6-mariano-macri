@@ -53,15 +53,6 @@ func (u *User) StoreUser() gin.HandlerFunc {
 			ctx.JSON(http.StatusInternalServerError, err.Error())
 		}
 
-		switch {
-		case request.Name == "":
-			ctx.JSON(http.StatusBadRequest, "Name must be provided")
-			return
-		case request.Age == 0:
-			ctx.JSON(http.StatusBadRequest, "Age must be provided")
-			return
-		}
-
 		result, err := u.UserSevice.Save(request)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, err)
@@ -83,15 +74,6 @@ func (u *User) UpdateUser() gin.HandlerFunc {
 		var request domain.User
 		if err := ctx.Bind(&request); err != nil {
 			ctx.JSON(http.StatusInternalServerError, err.Error())
-		}
-
-		switch {
-		case request.Name == "":
-			ctx.JSON(http.StatusBadRequest, "Name must be provided")
-			return
-		case request.Age == 0:
-			ctx.JSON(http.StatusBadRequest, "Age must be provided")
-			return
 		}
 
 		request.Id = int(id)

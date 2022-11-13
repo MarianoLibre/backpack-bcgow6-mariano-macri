@@ -53,15 +53,6 @@ func (b *Book) StoreBook() gin.HandlerFunc {
 			ctx.JSON(http.StatusInternalServerError, err.Error())
 		}
 
-		switch {
-		case request.Title == "":
-			ctx.JSON(http.StatusBadRequest, "Title must be provided")
-			return
-		case request.Quantity == 0:
-			ctx.JSON(http.StatusBadRequest, "Quantity must be greater than 0")
-			return
-		}
-
 		id, err := b.BookService.Save(request)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, err)
@@ -84,15 +75,6 @@ func (b *Book) UpdateBook() gin.HandlerFunc {
 		var request domain.Book
 		if err := ctx.Bind(&request); err != nil {
 			ctx.JSON(http.StatusInternalServerError, err.Error())
-		}
-
-		switch {
-		case request.Title == "":
-			ctx.JSON(http.StatusBadRequest, "Title must be provided")
-			return
-		case request.Quantity == 0:
-			ctx.JSON(http.StatusBadRequest, "Quantity must be greater than 0")
-			return
 		}
 
 		request.Id = int(id)
