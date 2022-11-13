@@ -25,8 +25,16 @@ func NewRepository(database *sql.DB) Repository {
 	}
 }
 
+const (
+	selectAllBooks = "select Title, Quantity from Book"
+	selectBookById = "select Title, Quantity from Book where id = ?"
+	insertBook = "insert into Book (Title, Quantity) values (?, ?)"
+	updateBook = "update Book set Title = ?, Quantity = ? where id = ?"
+	deleteBook = "delete from Book where id = ?"
+)
+
 func (r *repository) GetAll() ([]domain.Book, error) {
-	rows, err := r.database.Query("select * from Book")
+	rows, err := r.database.Query(selectAllBooks)
 	if err != nil {
 		return []domain.Book{}, nil
 	}
@@ -44,7 +52,7 @@ func (r *repository) GetAll() ([]domain.Book, error) {
 }
 
 func (r *repository) Get(id int) (domain.Book, error) {
-	row := r.database.QueryRow("select * from Book where id = ?", id)
+	row := r.database.QueryRow(selectBookById, id)
 	book := domain.Book{}
 	err := row.Scan(&book.Id, &book.Title, &book.Quantity)
 	if err != nil {
@@ -55,7 +63,7 @@ func (r *repository) Get(id int) (domain.Book, error) {
 }
 
 func (r *repository) Save(book domain.Book) (int, error) {
-	statement, err := r.database.Prepare("insert into Book (Title, Quantity) values (?, ?)")
+	statement, err := r.database.Prepare(insertBook)
 	if err != nil {
 		return 0, err
 	}
@@ -75,7 +83,7 @@ func (r *repository) Save(book domain.Book) (int, error) {
 }
 
 func (r *repository) Update(book domain.Book) error {
-	statement, err := r.database.Prepare("update Book set Title = ?, Quantity = ? where id = ?")
+	statement, err := r.database.Prepare(updateBook)
 	if err != nil {
 		return err
 	}
@@ -95,7 +103,7 @@ func (r *repository) Update(book domain.Book) error {
 }
 
 func (r *repository) Delete(id int) error {
-	statement, err := r.database.Prepare("delete from Book where id = ?")
+	statement, err := r.database.Prepare(deleteBook)
 	if err != nil {
 		return err
 	}

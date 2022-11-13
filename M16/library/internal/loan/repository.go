@@ -25,8 +25,16 @@ func NewRepository(database *sql.DB) Repository {
 	}
 }
 
+const (
+	selectAllLoans = "select * from Loan"
+	selectLoanById = "select * from Loan where id = ?"
+	insertLoan = "insert into Loan (BookId, UserId) values (?, ?)"
+	updateLoan = "update Loan set BookId = ?, UserId = ? where id = ?"
+	deleteLoan = "delete from Loan where id = ?"
+)
+
 func (r *repository) GetAll() ([]domain.Loan, error) {
-	rows, err := r.database.Query("select * from Loan")
+	rows, err := r.database.Query(selectAllLoans)
 	if err != nil {
 		return []domain.Loan{}, nil
 	}
@@ -44,7 +52,7 @@ func (r *repository) GetAll() ([]domain.Loan, error) {
 }
 
 func (r *repository) Get(id int) (domain.Loan, error) {
-	row := r.database.QueryRow("select * from Loan where id = ?", id)
+	row := r.database.QueryRow(selectLoanById, id)
 	loan := domain.Loan{}
 	err := row.Scan(&loan.Id, &loan.BookId, &loan.UserId)
 	if err != nil {
@@ -55,7 +63,7 @@ func (r *repository) Get(id int) (domain.Loan, error) {
 }
 
 func (r *repository) Save(loan domain.Loan) (int, error) {
-	statement, err := r.database.Prepare("insert into Loan (BookId, UserId) values (?, ?)")
+	statement, err := r.database.Prepare(insertLoan)
 	if err != nil {
 		return 0, err
 	}
@@ -75,7 +83,7 @@ func (r *repository) Save(loan domain.Loan) (int, error) {
 }
 
 func (r *repository) Update(loan domain.Loan) error {
-	statement, err := r.database.Prepare("update Loan set BookId = ?, UserId = ? where id = ?")
+	statement, err := r.database.Prepare(updateLoan)
 	if err != nil {
 		return err
 	}
@@ -95,7 +103,7 @@ func (r *repository) Update(loan domain.Loan) error {
 }
 
 func (r *repository) Delete(id int) error {
-	statement, err := r.database.Prepare("delete from Loan where id = ?")
+	statement, err := r.database.Prepare(deleteLoan)
 	if err != nil {
 		return err
 	}

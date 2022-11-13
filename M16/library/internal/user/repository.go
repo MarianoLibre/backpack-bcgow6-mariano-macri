@@ -25,8 +25,16 @@ func NewRepository(database *sql.DB) Repository {
 	}
 }
 
+const (
+	selectAllUsers = "select Name, Age from User"
+	selectUserById = "select Name, Age from User where id = ?"
+	insertUser = "insert into User (Name, Age) values (?, ?)"
+	updateUser = "update User set Name = ?, Age = ? where id = ?"
+	deleteUser = "delete from User where id = ?"
+)
+
 func (r *repository) GetAll() ([]domain.User, error) {
-	rows, err := r.database.Query("select * from User")
+	rows, err := r.database.Query(selectAllUsers)
 	if err != nil {
 		return []domain.User{}, nil
 	}
@@ -44,7 +52,7 @@ func (r *repository) GetAll() ([]domain.User, error) {
 }
 
 func (r *repository) Get(id int) (domain.User, error) {
-	row := r.database.QueryRow("select * from User where id = ?", id)
+	row := r.database.QueryRow(selectUserById, id)
 	user := domain.User{}
 	err := row.Scan(&user.Id, &user.Name, &user.Age)
 	if err != nil {
@@ -55,7 +63,7 @@ func (r *repository) Get(id int) (domain.User, error) {
 }
 
 func (r *repository) Save(user domain.User) (domain.User, error) {
-	statement, err := r.database.Prepare("insert into User (Name, Age) values (?, ?)")
+	statement, err := r.database.Prepare(insertUser)
 	if err != nil {
 		return domain.User{}, err
 	}
@@ -75,7 +83,7 @@ func (r *repository) Save(user domain.User) (domain.User, error) {
 }
 
 func (r *repository) Update(user domain.User) error {
-	statement, err := r.database.Prepare("update User set Name = ?, Age = ? where id = ?")
+	statement, err := r.database.Prepare(updateUser)
 	if err != nil {
 		return err
 	}
@@ -94,7 +102,7 @@ func (r *repository) Update(user domain.User) error {
 }
 
 func (r *repository) Delete(id int) error {
-	statement, err := r.database.Prepare("delete from User where id = ?")
+	statement, err := r.database.Prepare(deleteUser)
 	if err != nil {
 		return err
 	}

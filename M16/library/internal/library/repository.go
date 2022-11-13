@@ -25,8 +25,16 @@ func NewRepository(database *sql.DB) Repository {
 	}
 }
 
+const (
+	selectAllLibraries = "select Name, Address, PhoneNumber from Library"
+	selectLibraryBiId = "select Name, Address, PhoneNumber from Library where id = ?"
+	insertLibrary = "insert into Library (Name, Address, PhoneNumber) values (?, ?, ?)"
+	updateLibrary = "update Library set Name = ?, Address = ?, PhoneNumber = ? where id = ?"
+	deleteLibrary = "delete from Library where id = ?"
+)
+
 func (r *repository) GetAll() ([]domain.Library, error) {
-	rows, err := r.database.Query("select * from Library")
+	rows, err := r.database.Query(selectAllLibraries)
 	if err != nil {
 		return []domain.Library{}, nil
 	}
@@ -44,7 +52,7 @@ func (r *repository) GetAll() ([]domain.Library, error) {
 }
 
 func (r *repository) Get(id int) (domain.Library, error) {
-	row := r.database.QueryRow("select * from Library where id = ?", id)
+	row := r.database.QueryRow(selectLibraryBiId, id)
 	library := domain.Library{}
 	err := row.Scan(&library.Id, &library.Name, &library.Address, &library.PhoneNumber)
 	if err != nil {
@@ -55,7 +63,7 @@ func (r *repository) Get(id int) (domain.Library, error) {
 }
 
 func (r *repository) Save(library domain.Library) (int, error) {
-	statement, err := r.database.Prepare("insert into Library (Name, Address, PhoneNumber) values (?, ?, ?)")
+	statement, err := r.database.Prepare(insertLibrary)
 	if err != nil {
 		return 0, err
 	}
@@ -74,7 +82,7 @@ func (r *repository) Save(library domain.Library) (int, error) {
 }
 
 func (r *repository) Update(library domain.Library) error {
-	statement, err := r.database.Prepare("update Library set Name = ?, Address = ?, PhoneNumber = ? where id = ?")
+	statement, err := r.database.Prepare(updateLibrary)
 	if err != nil {
 		return err
 	}
@@ -93,7 +101,7 @@ func (r *repository) Update(library domain.Library) error {
 }
 
 func (r *repository) Delete(id int) error {
-	statement, err := r.database.Prepare("delete from Library where id = ?")
+	statement, err := r.database.Prepare(deleteLibrary)
 	if err != nil {
 		return err
 	}
