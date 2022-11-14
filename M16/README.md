@@ -67,7 +67,7 @@ La validación de la solicitud está integrada en **gin-gonic** a través del pa
 type User struct {
     Id          int         `json:"id"`
     Name        string      `json:"name" binding:"required, alpha"`
-    Age         int         `json:"age" binding:"required, min=18`
+    Age         int         `json:"age" binding:"required, min=18"`
 }
 ```
 
