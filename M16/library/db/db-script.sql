@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS test_db;
+CREATE DATABASE test_db;
+USE test_db;
+
 CREATE TABLE
   IF NOT EXISTS Library (
     Id int NOT NULL AUTO_INCREMENT,
@@ -18,7 +22,7 @@ CREATE TABLE
 CREATE TABLE
   IF NOT EXISTS User (
     Id int NOT NULL AUTO_INCREMENT,
-    Name varchar(255) NOT NULL,
+    Name varchar(255) NOT NULL UNIQUE,
     Age int,
     PRIMARY KEY (Id)
   );
